@@ -1,6 +1,6 @@
 import React from 'react'
 
-const VehiclePanel = ({setVehiclePanel,setConfirmRidePanel,fare,setVehicleType}) => {
+const VehiclePanel = ({setVehiclePanel,setConfirmRidePanel,fare,setVehicleType,setIsConfirmed}) => {
 
 
   if(!fare){
@@ -24,6 +24,7 @@ const VehiclePanel = ({setVehiclePanel,setConfirmRidePanel,fare,setVehicleType})
         <div onClick={()=>{setConfirmRidePanel(true)
             setVehiclePanel(false)
             setVehicleType('car')
+            setIsConfirmed(true)
         }} className=" flex items-center justify-between mb-3.5 border-white border-2 active:border-black p-2 rounded-2xl w-full ">
           <img
             className="h-10"
@@ -47,6 +48,7 @@ const VehiclePanel = ({setVehiclePanel,setConfirmRidePanel,fare,setVehicleType})
         <div onClick={()=>{setConfirmRidePanel(true)
             setVehiclePanel(false)
             setVehicleType('moto')
+            setIsConfirmed(true)
         }} className=" flex items-center justify-between mb-3.5 border-white border-2 active:border-black p-2 rounded-2xl w-full ">
           <img
             className="h-16"
@@ -70,6 +72,7 @@ const VehiclePanel = ({setVehiclePanel,setConfirmRidePanel,fare,setVehicleType})
         <div onClick={()=>{setConfirmRidePanel(true)
             setVehiclePanel(false)
             setVehicleType('auto')
+            setIsConfirmed(true)
         }} className=" flex items-center justify-between mb-3.5 border-white border-2 active:border-black p-2 rounded-2xl w-full ">
           <img
             className="h-10"

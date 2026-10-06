@@ -31,6 +31,7 @@ const Home = () => {
   const [ActiveFeild, setActiveFeild] = useState(null);
   const [Fare, setFare] = useState(null);
   const [VehicleType, setVehicleType] = useState(null);
+  const [IsConfirmed, setIsConfirmed] = useState(false)
 
   async function findTrip() {
     console.log(1);
@@ -279,6 +280,7 @@ const Home = () => {
         className="fixed   z-10  bottom-0  bg-white w-full p-3  flex flex-col   "
       >
         <VehiclePanelScreen
+        setIsConfirmed={setIsConfirmed}
           setVehicleType={setVehicleType}
           fare={Fare}
           setVehiclePanel={setVehiclePanel}
@@ -290,6 +292,7 @@ const Home = () => {
         className="fixed   z-10  bottom-0  bg-white w-full p-3  flex flex-col   "
       >
         <ConfirmRide
+        IsConfirmed={IsConfirmed}
           createRide={createRide}
           setConfirmRidePanel={setConfirmRidePanel}
           pickup={pick_up}

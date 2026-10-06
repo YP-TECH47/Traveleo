@@ -1,6 +1,20 @@
 import React from 'react'
 
 const ConfirmRide = (props) => {
+    let Pickup_loc= null
+    let Destination = null
+    let VehicleType = null
+    let Fare = null
+    
+
+    if(props.IsConfirmed){
+
+  Pickup_loc= props.pickup;
+      Destination = props.destination;
+      VehicleType = props.vehicleType;
+      Fare = props.fare?.fare?.[props.vehicleType] || 100;
+    }
+    
 
     console.log(props)
     const rideImages = {
@@ -16,26 +30,26 @@ const ConfirmRide = (props) => {
             <h3 className='text-2xl font-semibold mb-5'>Confirm your Ride</h3>
 
             <div className='flex gap-2 justify-between flex-col items-center'>
-                <img className='h-20' src={rideImages[props.vehicleType]} alt="" />
+                <img className='h-20' src={rideImages[VehicleType]} alt="" />
                 <div className='w-full mt-5'>
                     <div className='flex items-center gap-5 p-3 border-b'>
                         <i className="ri-map-pin-user-fill"></i>
                         <div>
                             <h3 className='text-lg font-medium pb-2'>Pickup Location</h3>
-                            <p className='text-sm -mt-1 text-gray-600'>{props.pickup}</p>
+                            <p className='text-sm -mt-1 text-gray-600'>{Pickup_loc}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3 border-b'>
                         <i className="text-lg ri-map-pin-2-fill"></i>
                         <div className="">
                             <h3 className='text-lg font-medium pb-2'>Destination</h3>
-                            <p className='text-sm -mt-1 text-gray-600'>{props.destination}</p>
+                            <p className='text-sm -mt-1 text-gray-600'>{Destination}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3'>
                         <i className="ri-currency-line"></i>
                         <div>
-                            <h3 className='text-lg font-medium'>₹ {props.fare?.fare?.[props.vehicleType] || 100}</h3>
+                            <h3 className='text-lg font-medium'>₹ {Fare}</h3>
                             <p className='text-sm -mt-1 text-gray-600'>Cash Cash</p>
                         </div>
                     </div>
