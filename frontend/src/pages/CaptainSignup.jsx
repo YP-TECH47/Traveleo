@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CaptainDataContext } from "../context/CaptainContext";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const CaptainSignup = () => {
@@ -17,36 +17,32 @@ const CaptainSignup = () => {
   const { captain, setCaptain } = React.useContext(CaptainDataContext);
   const navigate = useNavigate();
 
-  const submitHandler = async(e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-  let CaptainSignupData = {
-    fullname: {
-      firstname: firstname,
-      lastname: lastname,
-    },
-    email: email,
-    password: password,
-    vehicle: {
-      color: Color,
-      plate: Plate,
-      capacity: Capacity,
-      vehicleType: Vehicletype,
-    },
-  };
-  let response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`,CaptainSignupData);
-   if(response.status=="201"){
-    let data = response.data;
-    setCaptain(data.captain)
-    localStorage.setItem('captain-token',data.token)
-    navigate('/captain-home')
-   }
-    
-
-
-
-
-
-
+    let CaptainSignupData = {
+      fullname: {
+        firstname: firstname,
+        lastname: lastname,
+      },
+      email: email,
+      password: password,
+      vehicle: {
+        color: Color,
+        plate: Plate,
+        capacity: Capacity,
+        vehicleType: Vehicletype,
+      },
+    };
+    let response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/captains/register`,
+      CaptainSignupData,
+    );
+    if (response.status == "201") {
+      let data = response.data;
+      setCaptain(data.captain);
+      localStorage.setItem("captain-token", data.token);
+      navigate("/captain-home");
+    }
 
     setEmail("");
     setPassword("");
@@ -55,19 +51,15 @@ const CaptainSignup = () => {
     setColor("");
     setPlate("");
     setCapacity("");
-    setVehicletype("auto")
-    
+    setVehicletype("auto");
   };
-
- 
-
 
   return (
     <div className="p-7 h-screen flex flex-col justify-between">
       <div>
         <img
           className="w-18   "
-src="https://www.svgrepo.com/show/505031/uber-driver.svg"
+          src="https://www.svgrepo.com/show/505031/uber-driver.svg"
           alt="Uber Captain logo"
         />
 
@@ -99,7 +91,9 @@ src="https://www.svgrepo.com/show/505031/uber-driver.svg"
             />
           </div>
 
-          <h3 className="text-lg font-medium mb-2">What's our Captain's Email</h3>
+          <h3 className="text-lg font-medium mb-2">
+            What's our Captain's Email
+          </h3>
           <input
             required
             value={email}
@@ -162,9 +156,9 @@ src="https://www.svgrepo.com/show/505031/uber-driver.svg"
 
             <select
               required
-              
               className="bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base"
-              onChange={(e)=>{setVehicletype(e.target.value)
+              onChange={(e) => {
+                setVehicletype(e.target.value);
                 // SetCapacity(e.target.value)
               }}
               value={Vehicletype}
@@ -176,15 +170,12 @@ src="https://www.svgrepo.com/show/505031/uber-driver.svg"
 
             {/* 'car', 'motorcycle', 'auto' */}
           </div>
-          <button
-           
-            className="bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base"
-          >
+          <button className="bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base">
             Signup
           </button>
         </form>
         <p className="text-center">
-          Already have an account?{" "} 
+          Already have an account?{" "}
           <Link to="/captain-login" className="text-blue-600">
             Login
           </Link>

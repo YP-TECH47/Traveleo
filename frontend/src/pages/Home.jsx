@@ -31,7 +31,7 @@ const Home = () => {
   const [ActiveFeild, setActiveFeild] = useState(null);
   const [Fare, setFare] = useState(null);
   const [VehicleType, setVehicleType] = useState(null);
-  const [IsConfirmed, setIsConfirmed] = useState(false)
+  const [IsConfirmed, setIsConfirmed] = useState(false);
 
   async function findTrip() {
     console.log(1);
@@ -105,7 +105,6 @@ const Home = () => {
     );
 
     console.log(response.data);
-    
   }
   useGSAP(
     function () {
@@ -136,14 +135,14 @@ const Home = () => {
       if (ConfirmRidePanel) {
         gsap.to(ConfirmRideRef.current, {
           transform: "translateY(0)",
-                 duration: 0.4,
-    ease: "power2.out",
+          duration: 0.4,
+          ease: "power2.out",
         });
       } else {
         gsap.to(ConfirmRideRef.current, {
           transform: "translateY(100%)",
-                 duration: 0.4,
-    ease: "power2.out",
+          duration: 0.4,
+          ease: "power2.out",
         });
       }
     },
@@ -154,14 +153,14 @@ const Home = () => {
       if (WaitingForDriverPanel) {
         gsap.to(WaitingForDriverRef.current, {
           transform: "translateY(0)",
-                 duration: 0.4,
-    ease: "power2.out",
+          duration: 0.4,
+          ease: "power2.out",
         });
       } else {
         gsap.to(WaitingForDriverRef.current, {
           transform: "translateY(100%)",
-                 duration: 0.4,
-    ease: "power2.out",
+          duration: 0.4,
+          ease: "power2.out",
         });
       }
     },
@@ -172,16 +171,14 @@ const Home = () => {
       if (VehicleFound) {
         gsap.to(VehicleFoundRef.current, {
           transform: "translateY(0)",
-            duration: 0.4,
-    ease: "power2.out",
-           
+          duration: 0.4,
+          ease: "power2.out",
         });
       } else {
         gsap.to(VehicleFoundRef.current, {
           transform: "translateY(300%)",
-            duration: 0.4,
-    ease: "power2.out",
-           
+          duration: 0.4,
+          ease: "power2.out",
         });
       }
     },
@@ -192,14 +189,14 @@ const Home = () => {
       if (VehiclePanel) {
         gsap.to(VechielpanelRef.current, {
           transform: "translateY(0)",
-                 duration: 0.4,
-    ease: "power2.out",
+          duration: 0.4,
+          ease: "power2.out",
         });
       } else {
         gsap.to(VechielpanelRef.current, {
           transform: "translateY(100%)",
-                 duration: 0.4,
-    ease: "power2.out",
+          duration: 0.4,
+          ease: "power2.out",
         });
       }
     },
@@ -297,7 +294,7 @@ const Home = () => {
         className="fixed   z-10  bottom-0  bg-white w-full p-3  flex flex-col   "
       >
         <VehiclePanelScreen
-        setIsConfirmed={setIsConfirmed}
+          setIsConfirmed={setIsConfirmed}
           setVehicleType={setVehicleType}
           fare={Fare}
           setVehiclePanel={setVehiclePanel}
@@ -309,7 +306,7 @@ const Home = () => {
         className="fixed   z-10  bottom-0  bg-white w-full p-3  flex flex-col   "
       >
         <ConfirmRide
-        IsConfirmed={IsConfirmed}
+          IsConfirmed={IsConfirmed}
           createRide={createRide}
           setConfirmRidePanel={setConfirmRidePanel}
           pickup={pick_up}

@@ -1,13 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const FinishRiding = (props) => {
   return (
-     <div className=" ">
+    <div className=" ">
       <h5
         className="p-1 text-center w-[93%] absolute top-0"
         onClick={() => {
-              props.setFinishRidingPanel(false);
+          props.setFinishRidingPanel(false);
         }}
       >
         <i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i>
@@ -58,12 +58,13 @@ const FinishRiding = (props) => {
           </div>
         </div>
         <div className="w-full">
-         
-           
-            <Link to={'/captain-home'} className="w-full flex justify-center  bg-green-600 text-white font-semibold p-2 rounded-lg mb-2">
-              Complete Ride
-            </Link >
-          
+          <Link
+            to={"/captain-home"}
+            className="w-full flex justify-center  bg-green-600 text-white font-semibold p-2 rounded-lg mb-2"
+          >
+            Complete Ride
+          </Link>
+
           <button
             onClick={() => {
               props.setFinishRidingPanel(false);
@@ -72,13 +73,13 @@ const FinishRiding = (props) => {
           >
             Cancel
           </button>
-          <p className='text-red-500 text-sm mt-4  text-center'>
+          <p className="text-red-500 text-sm mt-4  text-center">
             Click on the Complete Ride button after reaching the destination
           </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FinishRiding
+export default FinishRiding;

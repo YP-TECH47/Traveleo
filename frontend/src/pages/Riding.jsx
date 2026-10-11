@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 const Riding = () => {
   return (
     <div className="h-screen">
-          <Link to='/home' className='fixed right-2 top-2 h-10 w-10 bg-white flex items-center justify-center rounded-full'>
-              <i className="ri-home-2-fill "></i>
-            </Link>
+      <Link
+        to="/home"
+        className="fixed right-2 top-2 h-10 w-10 bg-white flex items-center justify-center rounded-full"
+      >
+        <i className="ri-home-2-fill "></i>
+      </Link>
       <img
         className="h-1/2  w-full"
         src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
