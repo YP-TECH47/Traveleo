@@ -105,6 +105,7 @@ const Home = () => {
     );
 
     console.log(response.data);
+    
   }
   useGSAP(
     function () {
@@ -135,10 +136,14 @@ const Home = () => {
       if (ConfirmRidePanel) {
         gsap.to(ConfirmRideRef.current, {
           transform: "translateY(0)",
+                 duration: 0.4,
+    ease: "power2.out",
         });
       } else {
         gsap.to(ConfirmRideRef.current, {
           transform: "translateY(100%)",
+                 duration: 0.4,
+    ease: "power2.out",
         });
       }
     },
@@ -149,10 +154,14 @@ const Home = () => {
       if (WaitingForDriverPanel) {
         gsap.to(WaitingForDriverRef.current, {
           transform: "translateY(0)",
+                 duration: 0.4,
+    ease: "power2.out",
         });
       } else {
         gsap.to(WaitingForDriverRef.current, {
           transform: "translateY(100%)",
+                 duration: 0.4,
+    ease: "power2.out",
         });
       }
     },
@@ -163,12 +172,16 @@ const Home = () => {
       if (VehicleFound) {
         gsap.to(VehicleFoundRef.current, {
           transform: "translateY(0)",
-          zIndex: -1,
+            duration: 0.4,
+    ease: "power2.out",
+           
         });
       } else {
         gsap.to(VehicleFoundRef.current, {
           transform: "translateY(300%)",
-          zIndex: -1,
+            duration: 0.4,
+    ease: "power2.out",
+           
         });
       }
     },
@@ -179,10 +192,14 @@ const Home = () => {
       if (VehiclePanel) {
         gsap.to(VechielpanelRef.current, {
           transform: "translateY(0)",
+                 duration: 0.4,
+    ease: "power2.out",
         });
       } else {
         gsap.to(VechielpanelRef.current, {
           transform: "translateY(100%)",
+                 duration: 0.4,
+    ease: "power2.out",
         });
       }
     },
@@ -299,6 +316,7 @@ const Home = () => {
           destination={destination}
           vehicleType={VehicleType}
           fare={Fare}
+          setWaitingForDriverPanel={setWaitingForDriverPanel}
           setVehicleFound={setVehicleFound}
         />
       </div>

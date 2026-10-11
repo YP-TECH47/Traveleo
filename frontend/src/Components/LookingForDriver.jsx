@@ -35,7 +35,7 @@ const LookingForDriver = ({setVehicleFound,setWaitingForDriverPanel,pickup,desti
                     className='flex items-center gap-5 p-3'>
                         <i className="ri-currency-line"></i>
                         <div>
-                            <h3 className='text-lg font-medium'>₹ {fare?.fare?.[vehicleType] || 100}</h3>
+                            <h3 className='text-lg font-medium'>₹ 100</h3>
                             <p className='text-sm -mt-1 text-gray-600'>Cash Cash</p>
                         </div>
                     </div>
