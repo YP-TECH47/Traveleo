@@ -129,6 +129,7 @@ const Home = () => {
     },
     [Panel],
   );
+  console.log(Fare)
 
   useGSAP(
     function () {
@@ -335,7 +336,8 @@ const Home = () => {
         ref={WaitingForDriverRef}
         className="fixed   z-10  bottom-0  bg-white w-full p-3  flex flex-col   "
       >
-        <WaitingForDriver />
+        <WaitingForDriver
+        setWaitingForDriverPanel={setWaitingForDriverPanel} />
       </div>
     </div>
   );
