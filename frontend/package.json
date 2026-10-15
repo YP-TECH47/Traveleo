@@ -21,6 +21,7 @@
     "react-infinite-scroll-component": "^7.2.1",
     "react-router-dom": "^7.18.1",
     "remixicon": "^4.9.1",
+    "socket.io-client": "^4.8.4",
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {

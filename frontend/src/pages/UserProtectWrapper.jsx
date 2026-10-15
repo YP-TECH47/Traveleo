@@ -6,7 +6,8 @@ import axios from "axios";
 const UserProtectWrapper = ({ children }) => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserDataContext);
+  const { User, setUser } = useContext(UserDataContext);
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const UserProtectWrapper = ({ children }) => {
       .then((response) => {
         if (response.status === 200) {
           setUser(response.data);
+          console.log(User)
           setIsLoading(false);
         }
       })

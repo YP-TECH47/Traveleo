@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext,useEffect } from "react";
 import axios from "axios";
 import { useState, useRef } from "react";
 import { useGSAP } from "@gsap/react";
@@ -9,6 +9,8 @@ import VehiclePanelScreen from "../Components/VehiclePanelScreen";
 import ConfirmRide from "../Components/ConfirmRide";
 import LookingForDriver from "../Components/LookingForDriver";
 import WaitingForDriver from "../Components/WaitingForDriver";
+import {SocketContext} from "../context/SocketContext"
+import { UserDataContext } from "../context/UserContext";
 
 const Home = () => {
   const [pick_up, setpick_up] = useState("");
@@ -24,6 +26,9 @@ const Home = () => {
   const ConfirmRideRef = useRef(null);
   const VehicleFoundRef = useRef(null);
   const WaitingForDriverRef = useRef(null);
+// socket.io intregration module
+const {socket} = useContext(SocketContext)
+const {User}= useContext(UserDataContext)
 
   // backend intergration module
   const [PickupSuggestions, setPickupSuggestions] = useState([]);
@@ -32,6 +37,15 @@ const Home = () => {
   const [Fare, setFare] = useState(null);
   const [VehicleType, setVehicleType] = useState(null);
   const [IsConfirmed, setIsConfirmed] = useState(false);
+
+
+
+  useEffect(() => {
+    if(!User) return
+    console.log(User)
+    socket.emit("join",{userType:"user",userId:User._id})
+  }, [User])
+  
 
   async function findTrip() {
     console.log(1);
