@@ -1,6 +1,10 @@
-import React from "react";
+import React,{useContext} from "react";
+
+import {CaptainDataContext} from "../context/CaptainContext"
 
 const CaptainDetails = () => {
+  const {captain} = React.useContext(CaptainDataContext);
+  
   return (
     <>
       <div className="flex justify-between items-center p-2 ">
@@ -14,7 +18,7 @@ const CaptainDetails = () => {
           </div>
 
           <div className="flex flex-col  justify-center ml-3">
-            <p className="font-bold">Harshal Patel</p>
+            <p className="font-bold">{captain?.fullname.firstname+ " " + captain?.fullname.lastname}</p>
           </div>
         </div>
 
@@ -28,19 +32,19 @@ const CaptainDetails = () => {
 
       <div className="flex justify-around items-center p-2 ">
         <div className="flex flex-col justify-center items-center">
-          <i className="ri-dashboard-2-line text-2xl"></i>
-          <p className="font-semibold text-xl">10.2</p>
-          <p className="  text-lg">Hours online</p>
+          <i className="ri-car-fill text-2xl"></i>
+          <p className="  text-lg">Vehicle</p>
+          <p className="font-semibold text-xl capitalize">{captain?.vehicle.vehicleType}</p>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <i className="ri-dashboard-2-line text-2xl"></i>
-          <p className="font-semibold text-xl">10.2</p>
-          <p className="  text-lg">Hours online</p>
+          <i className="ri-sofa-fill text-2xl"></i>
+          <p className="  text-lg">Capacity</p>
+          <p className="font-semibold text-xl">{captain?.vehicle.capacity}</p>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <i className="ri-dashboard-2-line text-2xl"></i>
-          <p className="font-semibold text-xl">10.2</p>
-          <p className="  text-lg">Hours online</p>
+          <i className="ri-bar-chart-fill text-2xl"></i>
+          <p className="  text-lg">Status</p>
+          <p className="font-semibold text-xl capitalize">{captain?.status}</p>
         </div>
       </div>
     </>
