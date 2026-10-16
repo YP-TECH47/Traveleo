@@ -1,16 +1,31 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext,useEffect } from "react";
 import "remixicon/fonts/remixicon.css";
 import CaptainDetails from "../Components/CaptainDetails";
 import RidePopUp from "../Components/RidePopUp";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ConfirmRidePopUp from "../Components/ConfirmRidePopUp";
+import {SocketContext} from "../context/SocketContext"
+import {CaptainDataContext } from "../context/CaptainContext"
 
 const CaptainHome = () => {
   const [RidePopUpPanel, setRidePopUpPanel] = useState(true);
   const RidePopUpPanelRef = useRef(null);
   const [ConfirmRidePopUpPanel, setConfirmRidePopUpPanel] = useState(false);
   const ConfirmRidePopUpPanelRef = useRef(null);
+
+  // socket.io intregration module
+  const {socket} = useContext(SocketContext)
+  const {captain} = useContext(CaptainDataContext)
+
+
+  useEffect(() => {
+    if (!captain) return;
+    socket.emit('join',{userType:"captain", userId:captain._id})
+  
+    
+  }, [captain])
+  
 
   useGSAP(
     function () {

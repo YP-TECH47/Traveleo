@@ -41,9 +41,9 @@ const {User}= useContext(UserDataContext)
 
 
   useEffect(() => {
-    if(!User) return
-    console.log(User)
-    socket.emit("join",{userType:"user",userId:User._id})
+    if(!User) return;
+   console.log(User)
+    socket.emit("join", { userType: "user", userId: User._id })
   }, [User])
   
 
