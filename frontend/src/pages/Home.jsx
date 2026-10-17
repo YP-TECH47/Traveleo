@@ -361,6 +361,7 @@ console.log("Ride confirmed", ride)
         className="fixed   z-10  bottom-0  bg-white w-full p-3  flex flex-col   "
       >
         <WaitingForDriver
+        ride={ride}
         setWaitingForDriverPanel={setWaitingForDriverPanel} />
       </div>
     </div>
