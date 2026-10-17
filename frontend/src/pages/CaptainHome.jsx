@@ -9,14 +9,17 @@ import {SocketContext} from "../context/SocketContext"
 import {CaptainDataContext } from "../context/CaptainContext"
 
 const CaptainHome = () => {
-  const [RidePopUpPanel, setRidePopUpPanel] = useState(true);
+  const [RidePopUpPanel, setRidePopUpPanel] = useState(false);
   const RidePopUpPanelRef = useRef(null);
   const [ConfirmRidePopUpPanel, setConfirmRidePopUpPanel] = useState(false);
   const ConfirmRidePopUpPanelRef = useRef(null);
+  const [ride, setRide] = useState(null);
 
   // socket.io intregration module
   const {socket} = useContext(SocketContext)
   const {captain} = useContext(CaptainDataContext)
+
+
 
 
   useEffect(() => {
@@ -44,8 +47,10 @@ const CaptainHome = () => {
     
   }, [captain])
   
-  socket.on('new-ride', (ride) => {
-    console.log("New ride request received:", ride);
+  socket.on('new-ride', (data) => {
+    setRide(data)
+    setRidePopUpPanel(true)
+    console.log(ride)
    
   })
 
@@ -77,6 +82,28 @@ const CaptainHome = () => {
     },
     [ConfirmRidePopUpPanel],
   );
+
+
+
+
+   async function confirmRide() {
+
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/confirm`, {
+
+            rideId: ride._id,
+            captainId: captain._id,
+
+
+        }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+
+        setRidePopUpPanel(false)
+        setConfirmRidePopUpPanel(true)
+
+    }
   return (
     <div className=" relative h-screen w-screen ">
       <img
@@ -101,6 +128,8 @@ const CaptainHome = () => {
       >
         <RidePopUp
           RidePopUpPanel={RidePopUpPanel}
+confirmRide={confirmRide}
+          ride={ride}
           setRidePopUpPanel={setRidePopUpPanel}
           setConfirmRidePopUpPanel={setConfirmRidePopUpPanel}
         />

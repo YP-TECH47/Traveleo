@@ -1,6 +1,7 @@
 import React from "react";
 
 const RidePopUp = (props) => {
+  console.log(props.ride)
   return (
     <div>
       <h5
@@ -19,7 +20,7 @@ const RidePopUp = (props) => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexGFXR6G6MTBH2cyIOVrf4QoZoEt9TrB9_jVwDC2kWA&s=10"
             alt="User Image"
           />
-          <p className="font-semibold text-lg ml-2">Harshii Pateliya</p>
+          <p className="font-semibold text-lg ml-2">{props.ride?.user.fullname.firstname +" " + props.ride?.user.fullname.lastname}</p>
         </div>
 
         <p className="font-semibold text-lg">2.2 KM</p>
@@ -32,7 +33,7 @@ const RidePopUp = (props) => {
             <div>
               <h3 className="text-lg font-medium">562/11-A</h3>
               <p className="text-sm -mt-1 text-gray-600">
-                Malvia Nagar, Sector 11 1/662
+               {props.ride?.pickup}
               </p>
             </div>
           </div>
@@ -41,14 +42,14 @@ const RidePopUp = (props) => {
             <div>
               <h3 className="text-lg font-medium">562/11-A</h3>
               <p className="text-sm -mt-1 text-gray-600">
-                Fortis Hospital: Jawahar Lal Nehru Marg
+                {props.ride?.destination}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-5 p-2">
             <i className="ri-currency-line"></i>
             <div>
-              <h3 className="text-lg font-medium">₹193.50</h3>
+              <h3 className="text-lg font-medium"> ₹ {props.ride?.fare}</h3>
               <p className="text-sm -mt-1 text-gray-600">Cash Cash</p>
             </div>
           </div>
@@ -57,6 +58,7 @@ const RidePopUp = (props) => {
           <button
             onClick={() => {
               props.setRidePopUpPanel(false);
+              props.confirmRide()
             }}
             className="w-full bg-gray-600 text-white font-semibold p-2 rounded-lg"
           >

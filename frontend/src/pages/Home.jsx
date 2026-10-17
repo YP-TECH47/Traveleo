@@ -37,7 +37,7 @@ const {User}= useContext(UserDataContext)
   const [Fare, setFare] = useState(null);
   const [VehicleType, setVehicleType] = useState(null);
   const [IsConfirmed, setIsConfirmed] = useState(false);
-
+const [ride, setRide] = useState(null)
 
 
   useEffect(() => {
@@ -46,6 +46,14 @@ const {User}= useContext(UserDataContext)
     socket.emit("join", { userType: "user", userId: User._id })
   }, [User])
   
+     socket.on('ride-confirmed', ride => {
+
+
+        setVehicleFound(false)
+        setWaitingForDriverPanel(true)
+        setRide(ride)
+        console.log(ride)
+    })
 
   async function findTrip() {
     console.log(1);
@@ -77,13 +85,13 @@ const {User}= useContext(UserDataContext)
   async function handelPickupSuggestions(e) {
     setpick_up(e.target.value);
     try {
-      // const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`,{
-      //   params: { input: e.target.value },
-      //               headers: {
-      //                   Authorization: `Bearer ${localStorage.getItem('token')}`
-      //               }
-      // });
-      // setPickupSuggestions(response.data)
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`,{
+        params: { input: e.target.value },
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+      });
+      setPickupSuggestions(response.data)
     } catch (err) {
       console.log(err);
     }
@@ -93,19 +101,21 @@ const {User}= useContext(UserDataContext)
     setdestination(e.target.value);
 
     try {
-      // const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`,{
-      //   params: { input: e.target.value },
-      //               headers: {
-      //                   Authorization: `Bearer ${localStorage.getItem('token')}`
-      //               }
-      // });
-      // setDestinationSuggestions(response.data)
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`,{
+        params: { input: e.target.value },
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+      });
+      setDestinationSuggestions(response.data)
     } catch (err) {
       console.log(err);
     }
   }
 
   async function createRide() {
+
+    
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_URL}/rides/create`,
       {

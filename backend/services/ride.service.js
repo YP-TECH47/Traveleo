@@ -49,11 +49,13 @@ async function getFare(pickup, destination) {
 }
 
 function getOTP(num) {
-    function generateOtp(num) {
-        const otp = crypto.randomInt(Math.pow(10, num - 1), Math.pow(10, num)).toString();
-        return otp;
-    }
-    return generateOtp(num);
+  function generateOtp(num) {
+    const otp = crypto
+      .randomInt(Math.pow(10, num - 1), Math.pow(10, num))
+      .toString();
+    return otp;
+  }
+  return generateOtp(num);
 }
 
 module.exports.getFare = getFare;
@@ -68,21 +70,51 @@ module.exports.createRide = async ({
     throw new Error("user, pickup, destination and vehicleType are required");
   }
 
-   
-    const fare = await getFare(pickup, destination);
+  const fare = await getFare(pickup, destination);
 
-    const ride = rideModel.create({
-      user,
-      pickup,
-     otp:getOTP(6),
-      destination,
-      fare: fare[vehicleType],
-    });
+  const ride = rideModel.create({
+    user,
+    pickup,
+    otp: getOTP(6),
+    destination,
+    fare: fare[vehicleType],
+  });
+
+  return ride;
+};
+
+module.exports.confirmRide = async ({ rideId, captain }) => {
+  if (!rideId) {
+    throw new Error("Ride Id is required");
+  }
+
+  try {
+    await rideModel.findOneAndUpdate(
+      {
+        _id: rideId,
+      },
+      {
+        status: "accepted",
+        captain: captain._id,
+      },
+    );
+
+    const ride = await rideModel
+      .findOne({
+        _id: rideId,
+      })
+      .populate("user")
+      .populate("captain")
+      .select("+otp");
+
+    if (!ride) {
+      throw new Error("Ride not Found");
+    }
 
     return ride;
+  } catch (err) {
 
-   
-   
-    
-   
+    console.log(err)
+    throw new Error("Error while finding ride!")
+  }
 };

@@ -38,11 +38,11 @@ const LocationSearchPanel = ({
 
   return (
     <div>
-      {locations.map((e, i) => {
+      {suggestions.map((e, i) => {
         return (
           <div
             key={i}
-            onClick={() => tempSetter(e)}
+            onClick={() => handleSuggestionClick(e)}
             className="flex gap-4 border-2 p-3 border-gray-50 active:border-black rounded-xl items-center my-6 justify-start"
           >
             <h2 className="bg-[#eee] h-8 flex items-center justify-center w-12 rounded-full">

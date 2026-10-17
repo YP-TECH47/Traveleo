@@ -2,6 +2,8 @@ const rideService = require("../services/ride.service");
 const { validationResult } = require("express-validator");
 const mapService = require("../services/maps.service");
 const {sendMessageToSocketId} = require("../Socket")
+const rideModel = require("../models/ride.model");
+
 
 module.exports.createRide = async (req, res) => {
   const errors = validationResult(req);
@@ -24,10 +26,10 @@ console.log(pickupCoordinates)
     console.log("Captains in radius",captainsInRadius)
 
     ride.otp= null;
-
+const rideWithPopulatedUser = await rideModel.findOne({ _id: ride._id }).populate("user");
     captainsInRadius.map((captain)=>{
 
-      sendMessageToSocketId(captain.socketId, { event: "new-ride", data: ride });
+      sendMessageToSocketId(captain.socketId, { event: "new-ride", data: rideWithPopulatedUser });
     })
 } catch (err) {
   console.log(err)
@@ -48,4 +50,29 @@ return res.status(200).json({
   fare
 });
 
+}
+
+module.exports.confirmRide=async(req,res)=>{
+    const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+  }
+
+
+  try {
+
+    const {rideId}= req.body;
+     const ride = await rideService.confirmRide({ rideId, captain: req.captain });
+console.log("ride confirmed")
+      sendMessageToSocketId(ride.user.socketId, {
+            event: 'ride-confirmed',
+            data: ride
+        })
+     res.status(200).json(
+      ride
+     );
+  } catch (err) {
+    console.log(err)
+    throw new Error("Error while confirming a ride")
+  }
 }
