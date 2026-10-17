@@ -62,6 +62,7 @@ module.exports.confirmRide=async(req,res)=>{
   try {
 
     const {rideId}= req.body;
+    console.log("Captain from auth middleware:", req.captain);
      const ride = await rideService.confirmRide({ rideId, captain: req.captain });
 console.log("ride confirmed")
       sendMessageToSocketId(ride.user.socketId, {

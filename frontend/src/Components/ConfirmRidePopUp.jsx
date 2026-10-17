@@ -7,7 +7,7 @@ const ConfirmRidePopUp = (props) => {
 
   const submitHandeler = (e) => {
     e.preventDefault();
-    if (OTP === "123456") {
+    if (OTP === props.ride.otp) {
       navigate("/captain-riding");
     } else {
       alert("Invalid OTP");

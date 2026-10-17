@@ -46,13 +46,13 @@ const [ride, setRide] = useState(null)
     socket.emit("join", { userType: "user", userId: User._id })
   }, [User])
   
-     socket.on('ride-confirmed', ride => {
+     socket.on('ride-confirmed', (ride) => {
 
-
-        setVehicleFound(false)
+console.log("Ride confirmed", ride)
+       setVehicleFound(false)
         setWaitingForDriverPanel(true)
         setRide(ride)
-        console.log(ride)
+         
     })
 
   async function findTrip() {

@@ -87,6 +87,9 @@ module.exports.confirmRide = async ({ rideId, captain }) => {
   if (!rideId) {
     throw new Error("Ride Id is required");
   }
+  if (!captain || !captain._id) {
+throw new Error("Valid captain is required");
+}
 
   try {
     await rideModel.findOneAndUpdate(
