@@ -30,7 +30,7 @@ console.log(`User ${userId} of type ${userType} joined `);
 
         socket.on('update-location-captain', async (data) => {
             const { userId, location } = data;
-
+ 
             if (!location || !location.ltd || !location.lng) {
                 return socket.emit('error', { message: 'Invalid location data' });
             }
