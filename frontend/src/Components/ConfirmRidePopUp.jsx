@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
 
 const ConfirmRidePopUp = (props) => {
-  const [OTP, setOTP] = useState("");
+const [OTP, setOTP] = useState("");
   const navigate = useNavigate();
 
-  const submitHandeler = (e) => {
-    e.preventDefault();
-    if (OTP === props.ride.otp) {
-      navigate("/captain-riding");
-    } else {
-      alert("Invalid OTP");
+  const submitHander = async (e) => {
+        e.preventDefault()
+
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/start-ride`, {
+            params: {
+                rideId: props.ride._id,
+                otp: OTP
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+
+        if (response.status === 200) {
+            props.setConfirmRidePopUpPanel(false)
+            props.setRidePopUpPanel(false)
+            navigate('/captain-riding', { state: { ride: props.ride } })
+        }
+
+
     }
-  };
   return (
     <div className="h-screen pt-20 ">
       <h5
@@ -69,7 +83,7 @@ const ConfirmRidePopUp = (props) => {
           </div>
         </div>
         <div className="w-full">
-          <form onSubmit={submitHandeler}>
+          <form onSubmit={submitHander}>
             <input
               value={OTP}
               onChange={(e) => setOTP(e.target.value)}

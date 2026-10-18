@@ -1,13 +1,17 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import FinishRiding from "../Components/FinishRiding";
-import { useState } from "react";
-
+import { useState,useContext } from "react";
+import { UserDataContext } from "../context/UserContext";
 const CaptainRiding = () => {
   const [FinishRidingPanel, setFinishRidingPanel] = useState(false);
   const FinishRidingPanelRef = useRef(null);
+  const {user} = useContext(UserDataContext);
+  const location = useLocation()
+  const rideData = location.state?.ride;
+ 
   useGSAP(
     function () {
       if (FinishRidingPanel) {
@@ -51,7 +55,8 @@ const CaptainRiding = () => {
         ref={FinishRidingPanelRef}
         className="fixed w-full z-10 bottom-0  bg-white px-3 py-10 pt-12 "
       >
-        <FinishRiding setFinishRidingPanel={setFinishRidingPanel} />
+        <FinishRiding
+        ride={rideData} setFinishRidingPanel={setFinishRidingPanel} />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const FinishRiding = (props) => {
       </h5>
 
       <h3 className="text-2xl font-semibold mb-2 ">
-        Confirm Acceptance of Ride ?
+        Confirm Completion of Ride ?
       </h3>
       <div className="flex justify-between items-center border bg-amber-400 p-2 rounded-lg">
         <div className="flex  items-center">
@@ -23,7 +23,7 @@ const FinishRiding = (props) => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexGFXR6G6MTBH2cyIOVrf4QoZoEt9TrB9_jVwDC2kWA&s=10"
             alt="User Image"
           />
-          <p className="font-semibold text-lg ml-2">Harshii Pateliya</p>
+          <p className="font-semibold text-lg ml-2">{props.ride?.user.fullname.firstname + " " + props.ride?.user.fullname.lastname}</p>
         </div>
 
         <p className="font-semibold text-lg">2.2 KM</p>
@@ -31,28 +31,28 @@ const FinishRiding = (props) => {
 
       <div className="flex gap-2 justify-between flex-col items-center">
         <div className="w-full mt-5">
-          <div className="flex items-center gap-5 p-2 border-b">
+          <div className="flex items-center gap-2 p-2 border-b">
             <i className="ri-map-pin-user-fill"></i>
             <div>
-              <h3 className="text-lg font-medium">562/11-A</h3>
+              <h3 className="text-lg font-medium mb-2">Origin</h3>
               <p className="text-sm -mt-1 text-gray-600">
-                Malvia Nagar, Sector 11 1/662
+              {props.ride?.pickup}
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-5 p-2 border-b">
+          <div className="flex items-center gap-2 p-2 border-b">
             <i className="text-lg ri-map-pin-2-fill"></i>
             <div>
-              <h3 className="text-lg font-medium">562/11-A</h3>
+              <h3 className="text-lg font-medium mb-2">Heading Towards :</h3>
               <p className="text-sm -mt-1 text-gray-600">
-                Fortis Hospital: Jawahar Lal Nehru Marg
+                {props.ride?.destination}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-5 p-2">
             <i className="ri-currency-line"></i>
             <div>
-              <h3 className="text-lg font-medium">₹193.50</h3>
+              <h3 className="text-lg font-medium">₹{props.ride?.fare}</h3>
               <p className="text-sm -mt-1 text-gray-600">Cash Cash</p>
             </div>
           </div>
@@ -74,7 +74,7 @@ const FinishRiding = (props) => {
             Cancel
           </button>
           <p className="text-red-500 text-sm mt-4  text-center">
-            Click on the Complete Ride button after reaching the destination
+            Click on the Complete Ride button only after reaching the destination
           </p>
         </div>
       </div>

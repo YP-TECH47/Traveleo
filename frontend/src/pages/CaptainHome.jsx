@@ -138,6 +138,7 @@ console.log("exiting the confirmride function")
 confirmRide={confirmRide}
           ride={ride}
           setRidePopUpPanel={setRidePopUpPanel}
+          
           setConfirmRidePopUpPanel={setConfirmRidePopUpPanel}
         />
       </div>
@@ -148,6 +149,7 @@ confirmRide={confirmRide}
         <ConfirmRidePopUp
         ride={ride}
           ConfirmRidePopUpPanel={ConfirmRidePopUpPanel}
+          setRidePopUpPanel={setRidePopUpPanel}
           setConfirmRidePopUpPanel={setConfirmRidePopUpPanel}
         />
       </div>

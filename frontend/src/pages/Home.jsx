@@ -11,6 +11,7 @@ import LookingForDriver from "../Components/LookingForDriver";
 import WaitingForDriver from "../Components/WaitingForDriver";
 import {SocketContext} from "../context/SocketContext"
 import { UserDataContext } from "../context/UserContext";
+import {useNavigate} from "react-router-dom"
 
 const Home = () => {
   const [pick_up, setpick_up] = useState("");
@@ -38,6 +39,7 @@ const {User}= useContext(UserDataContext)
   const [VehicleType, setVehicleType] = useState(null);
   const [IsConfirmed, setIsConfirmed] = useState(false);
 const [ride, setRide] = useState(null)
+const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -48,11 +50,17 @@ const [ride, setRide] = useState(null)
   
      socket.on('ride-confirmed', (ride) => {
 
-console.log("Ride confirmed", ride)
+
        setVehicleFound(false)
         setWaitingForDriverPanel(true)
         setRide(ride)
          
+    })
+
+    socket.on('ride-started',ride=>{
+      console.log("ride started event received"+ride)
+      navigate("/riding")
+
     })
 
   async function findTrip() {

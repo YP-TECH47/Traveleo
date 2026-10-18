@@ -77,3 +77,26 @@ console.log("ride confirmed")
     throw new Error("Error while confirming a ride")
   }
 }
+
+
+
+module.exports.startRide=async (req,res,next)=>{
+   const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const {rideId,otp}= req.query;
+    const ride = await rideService.startRide({rideId,otp,captain:req.captain})
+ sendMessageToSocketId(ride.user.socketId, {
+            event: 'ride-started',
+            data: ride
+        })
+
+        res.status(200).json(ride)
+  } catch (error) {
+    console.log(error)
+    throw new Error("Problem while starting ride")
+  }
+}
