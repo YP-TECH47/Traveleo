@@ -59,7 +59,7 @@ const navigate = useNavigate()
 
     socket.on('ride-started',ride=>{
       console.log("ride started event received"+ride)
-      navigate("/riding")
+      navigate("/riding", { state: { ride: ride } })
 
     })
 

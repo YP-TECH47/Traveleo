@@ -4,11 +4,11 @@ import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import FinishRiding from "../Components/FinishRiding";
 import { useState,useContext } from "react";
-import { UserDataContext } from "../context/UserContext";
+ 
 const CaptainRiding = () => {
   const [FinishRidingPanel, setFinishRidingPanel] = useState(false);
   const FinishRidingPanelRef = useRef(null);
-  const {user} = useContext(UserDataContext);
+ 
   const location = useLocation()
   const rideData = location.state?.ride;
  
