@@ -16,6 +16,8 @@ import CaptainProtectWrapper from "./pages/CaptainProtectWrapper";
 import CaptainLogout from "./pages/CaptainLogout";
 import Riding from "./pages/Riding";
 import CaptainRiding from "./pages/CaptainRiding";
+import UserProfile from "./pages/UserProfile";
+import CaptainProfile from "./pages/CaptainProfile";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -101,11 +103,27 @@ function App() {
             </UserProtectWrapper>
           }
         />
+         <Route
+          path="/profile"
+          element={
+            <UserProtectWrapper>
+              <UserProfile />
+            </UserProtectWrapper>
+          }
+        />
         <Route
           path="/captain/logout"
           element={
             <CaptainProtectWrapper>
               <CaptainLogout />
+            </CaptainProtectWrapper>
+          }
+        />
+          <Route
+          path="/captain-profile"
+          element={
+            <CaptainProtectWrapper>
+              <CaptainProfile />
             </CaptainProtectWrapper>
           }
         />

@@ -9,6 +9,7 @@ import {SocketContext} from "../context/SocketContext"
 import {CaptainDataContext } from "../context/CaptainContext"
 import axios from "axios";
 import LiveTracking from "../Components/LiveTracking";
+import { useNavigate } from "react-router-dom";
 
 const CaptainHome = () => {
   const [RidePopUpPanel, setRidePopUpPanel] = useState(false);
@@ -23,7 +24,7 @@ const CaptainHome = () => {
 
 
 
-
+const navigate = useNavigate();
   useEffect(() => {
     if (!captain) return;
     socket.emit('join',{userType:"captain", userId:captain._id})
@@ -119,7 +120,15 @@ console.log("exiting the confirmride function")
         src="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoid2VhcmVcL2ZpbGVcLzhGbTh4cU5SZGZUVjUxYVh3bnEyLnN2ZyJ9:weare:F1cOF9Bps96cMy7r9Y2d7affBYsDeiDoIHfqZrbcxAw?width=1200&height=417"
         alt="uber Image"
       />
-
+{!RidePopUpPanel && !ConfirmRidePopUpPanel && (
+  <button
+    onClick={() => navigate("/captain-profile")}
+    aria-label="Open captain profile"
+    className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-md"
+  >
+    <i className="ri-user-line text-2xl text-black"></i>
+  </button>
+)}
       <div className="h-[65%]">
        <LiveTracking/>
       </div>

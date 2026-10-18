@@ -6,7 +6,7 @@ const CaptainContext = ({ children }) => {
   const [captain, setCaptain] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  // console.log(captain);
+  console.log(captain);
 
   const updateCaptain = (captainData) => {
     setCaptain(captainData);

@@ -255,6 +255,19 @@ const navigate = useNavigate()
 
       <div className="  h-screen absolute flex flex-col justify-end bottom-0 w-full ">
         <div className="bg-white p-5   h-[30%] relative">
+        {!Panel &&
+  !VehiclePanel &&
+  !ConfirmRidePanel &&
+  !VehicleFound &&
+  !WaitingForDriverPanel && (
+    <button
+      onClick={() => navigate("/profile")}
+      className="absolute top-5 right-5 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-md"
+      aria-label="Open profile"
+    >
+      <i className="ri-user-line text-2xl text-black"></i>
+    </button>
+  )}
           <h5
             onClick={() => {
               setPanel(false);
@@ -264,6 +277,7 @@ const navigate = useNavigate()
           >
             <i className="ri-arrow-down-wide-line"></i>
           </h5>
+         
           <h3 className="text-2xl font-semibold">Find a Trip</h3>
 
           <form
