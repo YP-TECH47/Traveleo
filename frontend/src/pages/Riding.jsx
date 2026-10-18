@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link,useLocation,useNavigate } from "react-router-dom";
 import {SocketContext} from "../context/SocketContext"
+import LiveTracking from "../Components/LiveTracking";
 
 const Riding = () => {
   const location = useLocation();
@@ -20,19 +21,18 @@ const Riding = () => {
       >
         <i className="ri-home-2-fill "></i>
       </Link>
-      <img
-        className="h-1/2  w-full"
-        src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-        alt="uber map"
-      />
+    <div className="h-1/2">
+
+        <LiveTracking/>
+    </div>
       <div className="h-1/2">
-        <div className="flex items-center justify-between p-2">
+        <div className="flex items-center justify-between p-2 pb-0">
           <img
             className="h-16"
             src="https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg"
             alt=""
           />
-          <div className="  p-2 flex flex-col justify-around items-end">
+          <div className="  p-2 flex flex-col justify-around items-end pb-0">
             <h2 className="text-lg font-medium capitalize">{ride?.captain.fullname.firstname}</h2>
             <h4 className="text-xl font-semibold -mt-1 -mb-1">
               {ride?.captain.vehicle.plate}{" "}
@@ -49,7 +49,7 @@ const Riding = () => {
             <div className="flex items-center gap-5 p-2 border-b ">
               <i className="text-lg ri-map-pin-2-fill"></i>
               <div>
-                <h3 className="text-lg font-medium">Heading Towards :</h3>
+                <h3 className="text-lg font-medium mb-2">Heading Towards :</h3>
                 <p className="text-sm -mt-1 text-gray-600">
                   {ride?.destination}
                 </p>

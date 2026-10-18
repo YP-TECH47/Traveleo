@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import FinishRiding from "../Components/FinishRiding";
 import { useState,useContext } from "react";
+import LiveTracking from "../Components/LiveTracking";
  
 const CaptainRiding = () => {
   const [FinishRidingPanel, setFinishRidingPanel] = useState(false);
@@ -30,11 +31,7 @@ const CaptainRiding = () => {
   return (
     <div className="h-screen">
       <div className="h-[80%]">
-        <img
-          className=" h-full w-full"
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-          alt="uber map"
-        />
+         <LiveTracking/>
       </div>
       <div
         className="h-[20%] bg-yellow-500 flex items-center justify-around p-4 relative"

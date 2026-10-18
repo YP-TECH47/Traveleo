@@ -1,32 +1,33 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 const ConfirmRidePopUp = (props) => {
-const [OTP, setOTP] = useState("");
+  const [OTP, setOTP] = useState("");
   const navigate = useNavigate();
 
   const submitHander = async (e) => {
-        e.preventDefault()
+    e.preventDefault();
 
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/start-ride`, {
-            params: {
-                rideId: props.ride._id,
-                otp: OTP
-            },
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        })
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/rides/start-ride`,
+      {
+        params: {
+          rideId: props.ride._id,
+          otp: OTP,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      },
+    );
 
-        if (response.status === 200) {
-            props.setConfirmRidePopUpPanel(false)
-            props.setRidePopUpPanel(false)
-            navigate('/captain-riding', { state: { ride: props.ride } })
-        }
-
-
+    if (response.status === 200) {
+      props.setConfirmRidePopUpPanel(false);
+      props.setRidePopUpPanel(false);
+      navigate("/captain-riding", { state: { ride: props.ride } });
     }
+  };
   return (
     <div className="h-screen pt-20 ">
       <h5
@@ -48,7 +49,11 @@ const [OTP, setOTP] = useState("");
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexGFXR6G6MTBH2cyIOVrf4QoZoEt9TrB9_jVwDC2kWA&s=10"
             alt="User Image"
           />
-          <p className="font-semibold text-lg ml-2">Harshii Pateliya</p>
+          <p className="font-semibold text-lg ml-2">
+            {props.ride?.user.fullname.firstname +
+              " " +
+              props.ride?.user.fullname.lastname}
+          </p>
         </div>
 
         <p className="font-semibold text-lg">2.2 KM</p>
@@ -59,18 +64,18 @@ const [OTP, setOTP] = useState("");
           <div className="flex items-center gap-5 p-2 border-b">
             <i className="ri-map-pin-user-fill"></i>
             <div>
-              <h3 className="text-lg font-medium">562/11-A</h3>
+              <h3 className="text-lg mb-2 font-medium">Pickup Address</h3>
               <p className="text-sm -mt-1 text-gray-600">
-                Malvia Nagar, Sector 11 1/662
+                {props.ride?.pickup}
               </p>
             </div>
           </div>
           <div className="flex items-center gap-5 p-2 border-b">
             <i className="text-lg ri-map-pin-2-fill"></i>
             <div>
-              <h3 className="text-lg font-medium">562/11-A</h3>
+              <h3 className="text-lg mb-2 font-medium">Destination</h3>
               <p className="text-sm -mt-1 text-gray-600">
-                Fortis Hospital: Jawahar Lal Nehru Marg
+                {props.ride?.destination}
               </p>
             </div>
           </div>

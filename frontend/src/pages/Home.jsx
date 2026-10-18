@@ -12,6 +12,7 @@ import WaitingForDriver from "../Components/WaitingForDriver";
 import {SocketContext} from "../context/SocketContext"
 import { UserDataContext } from "../context/UserContext";
 import {useNavigate} from "react-router-dom"
+import LiveTracking from "../Components/LiveTracking";
 
 const Home = () => {
   const [pick_up, setpick_up] = useState("");
@@ -249,11 +250,7 @@ const navigate = useNavigate()
       />
 
       <div className="h-screen w-screen ">
-        <img
-          className="h-[70%] w-full"
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-          alt="uber map"
-        />
+      <LiveTracking/>
       </div>
 
       <div className="  h-screen absolute flex flex-col justify-end bottom-0 w-full ">

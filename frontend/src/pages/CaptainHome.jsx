@@ -8,6 +8,7 @@ import ConfirmRidePopUp from "../Components/ConfirmRidePopUp";
 import {SocketContext} from "../context/SocketContext"
 import {CaptainDataContext } from "../context/CaptainContext"
 import axios from "axios";
+import LiveTracking from "../Components/LiveTracking";
 
 const CaptainHome = () => {
   const [RidePopUpPanel, setRidePopUpPanel] = useState(false);
@@ -120,11 +121,7 @@ console.log("exiting the confirmride function")
       />
 
       <div className="h-[65%]">
-        <img
-          className=" h-full w-full"
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-          alt="uber map"
-        />
+       <LiveTracking/>
       </div>
       <div className=" h-[35%] ">
         <CaptainDetails />
