@@ -100,7 +100,7 @@ const navigate = useNavigate();
 
         }, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('captain-token')}`
+                Authorization: `Bearer ${localStorage.getItem('captain-token')}`// we will take the token from local storage in development and in production we will take it from the cookie
             }
         })
 console.log("exiting the confirmride function")

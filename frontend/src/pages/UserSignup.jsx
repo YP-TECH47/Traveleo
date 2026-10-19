@@ -34,7 +34,7 @@ const UserSignup = () => {
     if (response.status == "201") {
       let data = response.data;
       setUser(data.user);
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.token); // we will take the token from local storage in development and in production we will take it from the cookie
       navigate("/home");
     }
   };

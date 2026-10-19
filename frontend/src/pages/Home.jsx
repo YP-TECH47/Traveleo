@@ -80,7 +80,7 @@ const navigate = useNavigate()
             pickup: pick_up,
           },
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,// we will take the token from local storage in development and in production we will take it from the cookie
           },
         },
       );
@@ -97,7 +97,7 @@ const navigate = useNavigate()
       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`,{
         params: { input: e.target.value },
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`// we will take the token from local storage in development and in production we will take it from the cookie
                     }
       });
       setPickupSuggestions(response.data)
@@ -113,7 +113,7 @@ const navigate = useNavigate()
       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`,{
         params: { input: e.target.value },
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                        Authorization: `Bearer ${localStorage.getItem('token')}`// we will take the token from local storage in development and in production we will take it from the cookie
                     }
       });
       setDestinationSuggestions(response.data)
@@ -133,7 +133,7 @@ const navigate = useNavigate()
         vehicleType: VehicleType,
       },
       {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },// we will take the token from local storage in development and in production we will take it from the cookie
       },
     );
 

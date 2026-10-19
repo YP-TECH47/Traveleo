@@ -17,7 +17,7 @@ const ConfirmRidePopUp = (props) => {
           otp: OTP,
         },
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,// we will take the token from local storage in development and in production we will take it from the cookie
         },
       },
     );
